@@ -1,0 +1,75 @@
+import html from "../../assets/frontend/html.png";
+import css from "../../assets/frontend/css.png";
+import js from "../../assets/frontend/js.png";
+import react from "../../assets/frontend/react.png";
+import alpine from "../../assets/frontend/alpine.svg";
+import bootstrap from "../../assets/frontend/bootstrap.png";
+import tailwindcss from "../../assets/frontend/tailwindcss.svg";
+import php from "../../assets/backend/php.png";
+import laravel from "../../assets/backend/laravel.png";
+import livewire from "../../assets/backend/livewire.png";
+import inertia from "../../assets/backend/inertia.jpeg";
+import ci4 from "../../assets/backend/ci4.png";
+import github from "../../assets/tools/github.png";
+import git from "../../assets/tools/git.png";
+import Skills from "../Section/Skills";
+
+const Content = () => {
+  const frontEnd = [html, css, js, react, alpine, bootstrap, tailwindcss];
+  const backEnd = [php, laravel, livewire, inertia, ci4];
+  const tools = [github, git];
+
+  return (
+    <>
+      <main className="lg:py-30 lg:w-[55%] flex flex-col gap-4">
+        <section id="about">
+          <p className="mb-3 text-justify tracking-wider text-secondary">
+            I am Fahad Bagundang, an aspiring web developer with a strong
+            passion for technology and innovation. Ever since I was introduced
+            to web development, I knew it was the path I wanted to pursue. As a
+            <span className="font-semibold text-primary-content">
+              Bachelor of Science in Information Systems (BSIS)
+            </span>{" "}
+            student at{" "}
+            <span className="font-semibold text-primary-content">
+              Sultan Kudarat State University
+            </span>
+            , I dedicate a significant amount of my time to practicing and
+            improving my skills in front-end and back-end development.
+          </p>
+          <p className="mb-3 text-justify text-secondary tracking-wider">
+            I am eager not only to develop websites but also to share my
+            knowledge and grow alongside others in the field. I believe in
+            continuous learning and actively seek out opportunities to expand my
+            understanding through collaboration and experience. As a student, I
+            am hardworking, focused, an active listener, and always open to
+            learning from others.
+          </p>
+          <p className="text-justify tracking-wider text-secondary">
+            Outside of academics, I enjoy playing video games and engaging in
+            outdoor sports, which help me stay balanced and energized. My goal
+            is to become a skilled and reliable web developer who can contribute
+            meaningfully to the tech community and help create innovative
+            digital solutions.
+          </p>
+        </section>
+
+        <section id="skills" className="pt-29">
+          <div>
+            <Skills images={frontEnd} heading="Frontend" />
+          </div>
+
+          <div className="mt-5">
+            <Skills images={backEnd} heading="Backend" />
+          </div>
+
+          <div className="mt-5">
+            <Skills images={tools} heading="Tools" />
+          </div>
+        </section>
+      </main>
+    </>
+  );
+};
+
+export default Content;
