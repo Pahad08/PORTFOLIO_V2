@@ -27,7 +27,7 @@ const Info = () => {
 
   return (
     <>
-      <header className="lg:w-[45%] lg:py-30 w-full sticky top-0 max-h-screen flex gap-24 flex-col">
+      <header className="lg:w-[45%] lg:py-30 w-full lg:sticky lg:top-0 max-h-screen flex lg:gap-24 gap-10 flex-col">
         <section>
           <a className="text-4xl font-bold tracking-wide" href="#">
             Fahad Bagundang
@@ -35,7 +35,7 @@ const Info = () => {
           <p className="mt-3 font-semibold text-lg">Full Stack Web Developer</p>
         </section>
 
-        <ul className="flex flex-col gap-4 w-max">
+        <ul className="lg:flex hidden flex-col gap-4 w-max">
           {navigationLink.map((link, index) => {
             return (
               <li key={index}>
