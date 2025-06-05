@@ -20,11 +20,6 @@ const App = () => {
       setIsMobile(isMobileUser() || window.innerWidth <= 1024);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
     const handleMouseMove = (event) => {
       if (!isMobile) {
         setMousePosition({ x: event.clientX, y: event.clientY });
@@ -32,7 +27,12 @@ const App = () => {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, [isMobile]);
 
   return (

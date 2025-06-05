@@ -47,16 +47,16 @@ const Info = () => {
                   <span
                     className={`${
                       activeNav.toLowerCase() === link.toLowerCase()
-                        ? "bg-primary-content w-18 h-px"
+                        ? "bg-primary w-18 h-px"
                         : "bg-secondary w-10 h-px"
-                    } group-hover:w-18 group-hover:bg-primary-content transition-all duration-200 ease-in-out`}
+                    } group-hover:w-18 group-hover:bg-primary transition-all duration-200 ease-in-out`}
                   ></span>
                   <span
                     className={`${
                       activeNav.toLowerCase() === link.toLowerCase()
-                        ? ""
+                        ? "text-primary"
                         : "text-secondary"
-                    } group-hover:text-primary-content uppercase`}
+                    } group-hover:text-primary uppercase text-sm`}
                   >
                     {link}
                   </span>
