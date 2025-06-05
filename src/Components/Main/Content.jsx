@@ -13,26 +13,75 @@ import ci4 from "/assets/backend/ci4.png";
 import github from "/assets/tools/github.png";
 import git from "/assets/tools/git.png";
 import Skills from "../Section/Skills";
-import { memo } from "react";
+import { memo, useEffect, useRef } from "react";
+import ContentHeader from "../Utils/ContentHeader";
+import { useMainContext } from "../../Context/MainContextProvider";
 
 const Content = () => {
-  const frontEnd = [html, css, js, react, alpine, bootstrap, tailwindcss];
-  const backEnd = [php, laravel, livewire, inertia, ci4];
-  const tools = [github, git];
+  const skillsContent = [
+    {
+      images: [html, css, js, react, alpine, bootstrap, tailwindcss],
+      heading: "Frontend",
+    },
+    {
+      heading: "Backend",
+      images: [php, laravel, livewire, inertia, ci4],
+    },
+    { images: [github, git], heading: "Tools" },
+  ];
+  const { setActiveNav } = useMainContext();
+  const aboutSection = useRef([]);
+
+  useEffect(() => {
+    const hash = location.hash.slice(1);
+
+    if (hash) {
+      const target = document.getElementById(hash);
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+
+    const targetSections = aboutSection.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    targetSections.forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      targetSections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
       <main className="lg:py-30 lg:w-[55%] flex flex-col gap-4">
-        <section id="about">
-          <div className="lg:hidden sticky top-0 p-0 backdrop-blur -mx-6 px-6 py-5 mb-4 w-screen">
-            <h1 className="font-bold uppercase tracking-widest">About</h1>
-          </div>
+        <section
+          id="about"
+          className="content-section"
+          ref={(el) => (aboutSection.current[0] = el)}
+        >
+          <ContentHeader heading="About" />
           <div>
             <p className="mb-3 text-justify tracking-wider text-secondary">
               I am Fahad Bagundang, an aspiring web developer with a strong
               passion for technology and innovation. Ever since I was introduced
               to web development, I knew it was the path I wanted to pursue. As
-              a
+              a{" "}
               <span className="font-semibold text-primary-content">
                 Bachelor of Science in Information Systems (BSIS)
               </span>{" "}
@@ -61,22 +110,20 @@ const Content = () => {
           </div>
         </section>
 
-        <section id="skills" className="pt-29">
-          <div className="lg:hidden sticky top-0 z-20 p-0 backdrop-blur -mx-6 px-6 py-5 mb-4 w-screen">
-            <h1 className="font-bold uppercase tracking-widest">Skills</h1>
-          </div>
+        <section
+          id="skills"
+          className="lg:pt-29 pt-10 content-section"
+          ref={(el) => (aboutSection.current[1] = el)}
+        >
+          <ContentHeader heading="Skills" />
           <div>
-            <div>
-              <Skills images={frontEnd} heading="Frontend" />
-            </div>
-
-            <div className="mt-5">
-              <Skills images={backEnd} heading="Backend" />
-            </div>
-
-            <div className="mt-5">
-              <Skills images={tools} heading="Tools" />
-            </div>
+            {skillsContent.map((content, index) => {
+              return (
+                <div className={index == 0 ? "" : "mt-5"} key={index}>
+                  <Skills images={content.images} heading={content.heading} />
+                </div>
+              );
+            })}
           </div>
         </section>
       </main>

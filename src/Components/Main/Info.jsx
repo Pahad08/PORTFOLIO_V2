@@ -1,9 +1,10 @@
 import { memo, useState } from "react";
 import { Github, Facebook, Mail } from "lucide-react";
+import { useMainContext } from "../../Context/MainContextProvider";
 
 const Info = () => {
-  const [activeNav, setActiveNav] = useState("about");
-  const navigationLink = ["about", "skills", "project"];
+  const { activeNav, setActiveNav } = useMainContext();
+  const navigationLink = ["about", "skills", "projects"];
   const contacts = [
     {
       contactName: "Github",

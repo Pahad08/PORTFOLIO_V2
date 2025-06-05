@@ -5,8 +5,8 @@ const Skills = ({ images = [], heading = "" }) => {
 
   return (
     <>
-      <h1 className="text-3xl font-semibold">{heading}</h1>
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-5 mt-5">
+      <h1 className="text-2xl font-semibold">{heading}</h1>
+      <div className="grid lg:grid-cols-4 md:grid-cols-5 grid-cols-3 gap-5 mt-5">
         {images.map((image, index) => {
           const isDimmed = currentIndex !== null && currentIndex !== index;
           return (
