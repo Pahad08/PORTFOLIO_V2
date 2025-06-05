@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { Github, Facebook, Mail } from "lucide-react";
 import { useMainContext } from "../../Context/MainContextProvider";
 
@@ -9,19 +9,16 @@ const Info = () => {
     {
       contactName: "Github",
       link: "https://github.com/Pahad08",
-      isLink: true,
       icon: <Github />,
     },
     {
       contactName: "Facebook",
       link: "https://web.facebook.com/Mastah.Pahad",
-      isLink: true,
       icon: <Facebook />,
     },
     {
       contactName: "mastahpahad@gmail.com",
-      link: "",
-      isLink: false,
+      link: "https://mail.google.com/mail/?view=cm&fs=1&to=mastahpahad@gmail.com",
       icon: <Mail />,
     },
   ];
@@ -71,29 +68,17 @@ const Info = () => {
 
         <section className="flex gap-5">
           {contacts.map((contact, index) => {
-            if (contact.isLink) {
-              return (
-                <a
-                  href={contact.link}
-                  key={index}
-                  className="tooltip tooltip-primary"
-                  data-tip={contact.contactName}
-                  target="_blank"
-                >
-                  {contact.icon}
-                </a>
-              );
-            } else {
-              return (
-                <span
-                  className="tooltip cursor-pointer tooltip-primary"
-                  data-tip={contact.contactName}
-                  key={index}
-                >
-                  {contact.icon}
-                </span>
-              );
-            }
+            return (
+              <a
+                href={contact.link}
+                key={index}
+                className="tooltip tooltip-primary"
+                data-tip={contact.contactName}
+                target="_blank"
+              >
+                {contact.icon}
+              </a>
+            );
           })}
         </section>
       </header>
