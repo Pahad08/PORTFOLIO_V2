@@ -10,7 +10,7 @@ const App = () => {
     <>
       <MouseOverLay />
 
-      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-24 md:px-12 md:py-16 lg:py-0">
+      <div className="font-[Montserrat] mx-auto min-h-screen max-w-screen-xl px-6 py-24 md:px-12 md:py-16 lg:py-0">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-24 lg:gap-0">
           <MainContextProvider>
             <Info />
