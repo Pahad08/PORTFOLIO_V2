@@ -1,7 +1,11 @@
 import { memo, useState } from "react";
 import { MoveUpRight } from "lucide-react";
 
-const Projects = ({ projects = [] }) => {
+const Projects = ({
+  projects = [],
+  modalRef = null,
+  handleModalValue = () => {},
+}) => {
   const [currentIndex, setcurrentIndex] = useState(null);
 
   return (
@@ -16,6 +20,14 @@ const Projects = ({ projects = [] }) => {
             key={index}
             onMouseEnter={() => setcurrentIndex(index)}
             onMouseLeave={() => setcurrentIndex(null)}
+            onClick={() => {
+              modalRef.current.showModal();
+              handleModalValue({
+                title: project.title,
+                image: project.image,
+                description: project.description,
+              });
+            }}
           >
             <div className="card-body">
               <h2 className="card-title group-hover:text-info">
